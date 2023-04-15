@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+    О пользователе
+{% endblock %}
+
+{% block content %}
+    <h1>О пользователе</h1>
+    <div>
+        {{ user_name }}
+    <hr>
+    <a href="{{ url_for('users_app.list') }}">Back to users list</a>
+    </div>
+{% endblock %}
