@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    О пользователе
+{% endblock %}
+
+{% block content %}
+    <h1>{{ articles[articles_id]['name'] }}</h1>
+    <div>
+        {{ articles[articles_id]['rubric'] }}
+    <hr>
+        {{ articles[articles_id]['text'] }}
+    <hr>
+        {{ users[articles[articles_id]['author']] }}
+    <hr>
+    <a href="{{ url_for('articles_app.list') }}">Back to articles list</a>
+    </div>
+{% endblock %}
