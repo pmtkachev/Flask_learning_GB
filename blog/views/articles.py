@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 from werkzeug.exceptions import NotFound
-from .users import USERS
 
 articles_app = Blueprint('articles_app', __name__)
 ARTICLES = {
@@ -30,4 +29,4 @@ def user_detail(articles_id: int):
         article_name = ARTICLES[articles_id]
     except KeyError:
         raise NotFound(f'Article #{articles_id} not found')
-    return render_template('articles/details.html', articles_id=articles_id, articles=ARTICLES, users=USERS)
+    return render_template('articles/details.html', articles_id=articles_id, articles=ARTICLES)
