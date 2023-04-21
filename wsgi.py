@@ -1,4 +1,6 @@
-from blog.app import app, db
+from blog.app import create_app, db
+
+app = create_app()
 
 
 @app.cli.command('init-db')
