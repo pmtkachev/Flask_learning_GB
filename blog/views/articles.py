@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 from werkzeug.exceptions import NotFound
-from .users import USERS
 
 articles_app = Blueprint('articles_app', __name__)
+
 ARTICLES = {
     1: {'name': 'Статья 1',
         'author': 1,
@@ -20,14 +21,16 @@ ARTICLES = {
 
 
 @articles_app.route('/', endpoint='list')
+@login_required
 def articles_list():
     return render_template('articles/list.html', articles=ARTICLES)
 
 
 @articles_app.route('/<int:articles_id>/', endpoint='detail')
+@login_required
 def user_detail(articles_id: int):
     try:
         article_name = ARTICLES[articles_id]
     except KeyError:
         raise NotFound(f'Article #{articles_id} not found')
-    return render_template('articles/details.html', articles_id=articles_id, articles=ARTICLES, users=USERS)
+    return render_template('articles/details.html', articles_id=articles_id, articles=ARTICLES)
