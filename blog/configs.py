@@ -1,7 +1,5 @@
-import os
-
-
 class BaseConfig(object):
+    WTF_CSRF_ENABLED = True
     DEBUG = False
     TESTING = False
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
