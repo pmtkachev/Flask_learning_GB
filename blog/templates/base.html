@@ -14,37 +14,42 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('articles_app.list') }}">Blog</a>
+        <a class="navbar-brand" href="{{ url_for('index.index_') }}">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarAltMarkup">
             <div class="navbar-nav">
-                {% for (endpoint, label) in [('users_app.list', 'Users'), ('articles_app.list', 'Articles')] %}
+                {% for (endpoint, label) in [('users_app.list', 'Users'), ('articles_app.list', 'Articles'),
+                ('authors_app.list', 'Authors')] %}
                     <a href="{{ url_for(endpoint) }}"
                        class="nav-link {% if request.endpoint == endpoint %}active{% endif %}">
                         {{ label }}
                     </a>
                 {% endfor %}
-                {% for (endpoint, label) in [('auth_app.login', 'Login'), ('auth_app.register', 'Register')] %}
-                    <a href="{{ url_for(endpoint) }}"
-                       class="nav-link {% if request.endpoint == endpoint -%}active{%- endif %}">
-                        {{ label }}
-                    </a>
-                {% endfor %}
-
+                {% if not current_user.is_authenticated %}
+                    {% for (endpoint, label) in [('auth_app.login', 'Login'), ('auth_app.register', 'Register')] %}
+                        <a href="{{ url_for(endpoint) }}"
+                           class="nav-link {% if request.endpoint == endpoint -%}active{%- endif %}">
+                            {{ label }}
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <a href="{{ url_for('auth_app.logout') }}"
+                    class="nav-link">Logout</a>
+                {% endif %}
             </div>
         </div>
     </div>
 </nav>
-<div class="container">
-    {% block content %}
-        <h1>Hello, world!</h1>
-        {% block js %}
-            <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
-        {% endblock %}
-    {% endblock %}
-</div>
+<div class=" container">
+                {% block content %}
+                    <h1>Hello, world!</h1>
+                    {% block js %}
+                        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+                    {% endblock %}
+                {% endblock %}
+            </div>
 </body>
 </html>

@@ -15,7 +15,7 @@ login_manager = LoginManager()
 @auth_app.route("/register/", methods=["GET", "POST"], endpoint="register")
 def register():
     if current_user.is_authenticated:
-        return redirect("index")
+        return redirect("index.index_")
 
     error = None
     form = RegistrationForm(request.form)
@@ -45,14 +45,14 @@ def register():
         else:
             current_app.logger.info("Created user %s", user)
             login_user(user)
-            return redirect(url_for("index"))
+            return redirect(url_for("index.index_"))
     return render_template("auth/register.html", form=form, error=error)
 
 
 @auth_app.route('/login/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect("index")
+        return redirect("index.index_")
 
     form = LoginForm(request.form)
 
@@ -64,7 +64,7 @@ def login():
             return render_template("auth/login.html", form=form, error="invalid username or password")
 
         login_user(user)
-        return redirect(url_for("index"))
+        return redirect(url_for("index.index_"))
 
     return render_template("auth/login.html", form=form)
 
