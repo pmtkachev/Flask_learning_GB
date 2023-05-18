@@ -3,6 +3,21 @@ import os
 from blog.app import app, db
 
 
+@app.cli.command('create-tags')
+def create_tags():
+    from blog.models.tag import Tag
+    for name in [
+        'flask',
+        'python',
+        'django',
+        'other'
+    ]:
+        tag = Tag(name=name)
+        db.session.add(tag)
+    db.session.commit()
+    print('create tags')
+
+
 @app.cli.command('create-admin')
 def create_admin():
     from blog.models.user import User

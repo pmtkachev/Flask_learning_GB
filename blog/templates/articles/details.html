@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}
-    Article #{{ article.id }}: {{ article.title }}
+Article #{{ article.id }}: {{ article.title }}
 {% endblock %}
 {% block content %}
-    <h1>{{ article.title }}</h1>
-    <div>
+<div class="card">
+    <div class="card-body">
+        <h1>{{ article.title }}</h1>
         <p>{{ article.text }}</p>
-        <div>Published {{ article.dt_created }}</div>
+        <div>Published: {{ article.dt_created }}</div>
         <div>by {{ article.author.user.username }}</div>
+        {% if article.tags %}
+        <div>Tags:
+            {% for tag in article.tags %}
+            <li class="badge bg-primary">{{ tag.name }}</li>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
+</div>
 {% endblock %}
