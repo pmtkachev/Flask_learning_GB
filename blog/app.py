@@ -9,6 +9,7 @@ from blog.views.articles import articles_app
 from blog.views.authors import authors_app
 from blog.views.auth import login_manager, auth_app
 from blog.views.index import index
+from blog.admin import admin_
 
 
 def register_blueprints(app):
@@ -25,6 +26,7 @@ db.init_app(app)
 
 migrate = Migrate(app, db)
 flask_bcrypt.init_app(app)
+admin_.init_app(app)
 
 register_blueprints(app)
 

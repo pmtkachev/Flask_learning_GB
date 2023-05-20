@@ -17,6 +17,9 @@ class User(db.Model, UserMixin):
     _password = Column(LargeBinary, nullable=True)
     author = relationship('Author', uselist=False, back_populates='user')
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
     @property
     def password(self):
         return self._password

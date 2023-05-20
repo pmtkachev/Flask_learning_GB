@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}Список статей{% endblock %}
 {% block content %}
-<h1>Articles List</h1>
+<div class="row">
+    <div class="col"><h1>Список статей</h1></div>
+    <div class="col d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+        <a href="{{ url_for('articles_app.create') }}" class="btn btn-outline-success">Create new</a>
+    </div>
+</div>
+<hr>
 <div class="row">
     {% for article in articles %}
     <div class="col-sm-4 mb-3 mb-sm-2">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ article.title }}</h5>
-                <p class="card-text">{{ article.author.user.username }}</p>
+                <p class="card-text">{{ article.text[:200] }}..</p>
                 <a href="{{ url_for('articles_app.details', articles_id=article.id) }}" class="btn btn-outline-primary">Read</a>
             </div>
         </div>
@@ -16,7 +22,4 @@
     {% endfor %}
 </div>
 <hr>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="{{ url_for('articles_app.create') }}" class="btn btn-outline-success">Create new</a>
-</div>
 {% endblock %}
