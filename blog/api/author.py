@@ -6,7 +6,6 @@ from blog.models import Author
 
 from blog.models.articles import Article
 
-
 class AuthorList(ResourceList):
     schema = AuthorSchema
     data_layer = {
