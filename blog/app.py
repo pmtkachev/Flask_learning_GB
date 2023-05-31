@@ -10,7 +10,7 @@ from blog.views.authors import authors_app
 from blog.views.auth import login_manager, auth_app
 from blog.views.index import index
 from blog.admin import admin_
-from blog.api import init_api
+# from blog.api import init_api
 
 
 def register_blueprints(app):

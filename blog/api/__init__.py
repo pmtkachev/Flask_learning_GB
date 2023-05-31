@@ -1,5 +1,5 @@
-from combojsonapi.spec import ApiSpecPlugin
-from flask_combo_jsonapi import Api
+# from combojsonapi.spec import ApiSpecPlugin
+# from flask_combo_jsonapi import Api
 
 from blog.api.tag import TagList, TagDetail
 from blog.api.user import UserList, UserDetail
